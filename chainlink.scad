@@ -1,3 +1,8 @@
+// chainlink.scad
+// Chain link for plastic chains
+//
+// Copyright 2013 Christopher Roberts
+
 // Global Parameters
 length      = 47;
 width       = 27;
