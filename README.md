@@ -19,8 +19,13 @@ Instructions
 * Set selection, depending on whether you wish to print all or part of the link.
 * Compile and export to STL.
 * Alternatively download the included STL.
-* Slice with a brim - this is only required for the male part.
+* Slice with a raft - this is only required for the male part ([see below](#raft)).
 * Print.
+
+<a name="raft"></a>
+The male part of the chain link is slightly problematic to print, being prone to lifting. 
+For this reason I would recommend printing with a raft and printing on its own, 
+so that it isn't left on its own whilst a layer of the female part is printed.
 
 Would benefit from being printed in a slightly flexible plastic, to cope with impact.
 
