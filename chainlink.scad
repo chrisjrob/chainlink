@@ -25,7 +25,7 @@ clip_female = 3;
 precision   = 75;
 
 // Selection
-selection   = 1; // 0 = both, 1 = male, 2 = female
+selection   = 0; // 0 = both, 1 = male, 2 = female
 
 module chainlink_male() {
 
