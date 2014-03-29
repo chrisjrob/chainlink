@@ -21,3 +21,11 @@ Instructions
 * Alternatively download the included STL.
 * Slice with a brim - this is only required for the male part.
 * Print.
+
+Would benefit from being printed in a slightly flexible plastic, to cope with impact.
+
+Assembly
+--------
+Clip two halves together to make the first link.
+For the next link do the same, but puttig through the first link.
+Repeat until you have a chain.
