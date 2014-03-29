@@ -24,33 +24,47 @@ clip_male   = 2;
 clip_female = 3;
 precision   = 75;
 
+// Selection
+selection   = 1; // 0 = both, 1 = male, 2 = female
 
-module chainlink() {
+module chainlink_male() {
 
     difference() {
 
         // Things that exist
         union() {
-            translate([-width, 0, 0]) half_link();
-            translate([width, 0, height/2]) rotate([0, 180, 180]) half_link();
+            translate([0, 0, height/2]) rotate([0, 180, 180]) half_link();
 
-            translate([ width                     , -width   + height  , height/2 -0.1]) cylinder( r = clip_male/2, h = height*0.35 +0.2, $fn = precision/3 );
-            translate([ width                     ,  width   - height  , height/2 -0.1]) cylinder( r = clip_male/2, h = height*0.35 +0.2, $fn = precision/3 );
-            translate([ width + width/2 - height/2, -width/2 + height/2, height/2 -0.1]) cylinder( r = clip_male/2, h = height*0.35 +0.2, $fn = precision/3 );
-            translate([ width + width/2 - height/2,  width/2 - height/2, height/2 -0.1]) cylinder( r = clip_male/2, h = height*0.35 +0.2, $fn = precision/3 );
-            translate([ width - width/2 + height/2, -width/2 + height/2, height/2 -0.1]) cylinder( r = clip_male/2, h = height*0.35 +0.2, $fn = precision/3 );
-            translate([ width - width/2 + height/2,  width/2 - height/2, height/2 -0.1]) cylinder( r = clip_male/2, h = height*0.35 +0.2, $fn = precision/3 );
+            translate([ 0                  , -width  + height  , height/2 -0.1]) cylinder( r = clip_male/2, h = height*0.35 +0.2, $fn = precision/3 );
+            translate([ 0                  ,  width  - height  , height/2 -0.1]) cylinder( r = clip_male/2, h = height*0.35 +0.2, $fn = precision/3 );
+            translate([ width/2 - height/2, -width/2 + height/2, height/2 -0.1]) cylinder( r = clip_male/2, h = height*0.35 +0.2, $fn = precision/3 );
+            translate([ width/2 - height/2,  width/2 - height/2, height/2 -0.1]) cylinder( r = clip_male/2, h = height*0.35 +0.2, $fn = precision/3 );
+            translate([-width/2 + height/2, -width/2 + height/2, height/2 -0.1]) cylinder( r = clip_male/2, h = height*0.35 +0.2, $fn = precision/3 );
+            translate([-width/2 + height/2,  width/2 - height/2, height/2 -0.1]) cylinder( r = clip_male/2, h = height*0.35 +0.2, $fn = precision/3 );
 
+        }
+    
+    }
+
+}
+
+module chainlink_female() {
+
+    difference() {
+
+        // Things that exist
+        union() {
+            translate([0, 0, 0]) half_link();
         }
 
         // Things that don't exist
         union() {
-            translate([-width                     , -width   + height  , -0.1       ]) cylinder( r = clip_female/2, h = height*0.4 +0.2, $fn = precision/3 );
-            translate([-width                     ,  width   - height  , -0.1       ]) cylinder( r = clip_female/2, h = height*0.4 +0.2, $fn = precision/3 );
-            translate([-width + width/2 - height/2, -width/2 + height/2, -0.1       ]) cylinder( r = clip_female/2, h = height*0.4 +0.2, $fn = precision/3 );
-            translate([-width + width/2 - height/2,  width/2 - height/2, -0.1       ]) cylinder( r = clip_female/2, h = height*0.4 +0.2, $fn = precision/3 );
-            translate([-width - width/2 + height/2, -width/2 + height/2, -0.1       ]) cylinder( r = clip_female/2, h = height*0.4 +0.2, $fn = precision/3 );
-            translate([-width - width/2 + height/2,  width/2 - height/2, -0.1       ]) cylinder( r = clip_female/2, h = height*0.4 +0.2, $fn = precision/3 );
+            translate([0                     , -width   + height  , -0.1       ]) cylinder( r = clip_female/2, h = height*0.4 +0.2, $fn = precision/3 );
+            translate([0                     ,  width   - height  , -0.1       ]) cylinder( r = clip_female/2, h = height*0.4 +0.2, $fn = precision/3 );
+            translate([0 + width/2 - height/2, -width/2 + height/2, -0.1       ]) cylinder( r = clip_female/2, h = height*0.4 +0.2, $fn = precision/3 );
+            translate([0 + width/2 - height/2,  width/2 - height/2, -0.1       ]) cylinder( r = clip_female/2, h = height*0.4 +0.2, $fn = precision/3 );
+            translate([0 - width/2 + height/2, -width/2 + height/2, -0.1       ]) cylinder( r = clip_female/2, h = height*0.4 +0.2, $fn = precision/3 );
+            translate([0 - width/2 + height/2,  width/2 - height/2, -0.1       ]) cylinder( r = clip_female/2, h = height*0.4 +0.2, $fn = precision/3 );
         }
     
     }
@@ -119,4 +133,11 @@ module donut() {
     }
 }
 
-chainlink();
+if (selection == 0) {
+    translate( [ -width * 0.7, 0, 0] ) chainlink_male();
+    translate( [ width * 0.7, 0, 0] ) chainlink_female();
+} else if (selection == 1) {
+    chainlink_male();
+} else if (selection == 2) {
+    chainlink_female();
+}
