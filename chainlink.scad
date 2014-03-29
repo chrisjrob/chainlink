@@ -20,12 +20,12 @@
 length      = 47;
 width       = 27;
 height      = 8;
-clip_male   = 2;
-clip_female = 3;
+clip_male   = 2.1;
+clip_female = 2.7;
 precision   = 75;
 
 // Selection
-selection   = 0; // 0 = both, 1 = male, 2 = female
+selection   = 3; // 0 = both, 1 = male, 2 = female, 3 = demo
 
 module chainlink_male() {
 
@@ -140,4 +140,7 @@ if (selection == 0) {
     chainlink_male();
 } else if (selection == 2) {
     chainlink_female();
+} else if (selection == 3) {
+    translate([0, 0, height * 1.2]) rotate( [0,180,0] ) chainlink_male();
+    translate([0, 0, height/2]) rotate( [0,180,180] ) chainlink_female();
 }
